@@ -85,10 +85,10 @@ var fetchCmd = &cobra.Command{
 		}
 		if notifications != nil {
 			messages := genSlackWebhookMessage(notifications)
-			for _, m := range messages {
-				err := util.SendToSlackWebhook(config.AppConfig.Slack.WebhookURL, &m)
+			for i := range messages {
+				err := util.SendToSlackWebhook(config.AppConfig.Slack.WebhookURL, &messages[i])
 				if err != nil {
-					log.Fatalf("failed send message: %+v, err: %s", m, err)
+					log.Fatalf("failed send message: %+v, err: %s", messages[i], err)
 				}
 			}
 		}

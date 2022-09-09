@@ -1,11 +1,15 @@
 package util
 
 import (
+	"log"
+	"os"
 	"path/filepath"
-	"runtime"
 )
 
 func RootDir() string {
-	_, b, _, _ := runtime.Caller(0)
-	return filepath.Join(filepath.Dir(b), "../../")
+	root, err := os.Executable()
+	if err != nil {
+		log.Fatalf("failed to get root dir, err: %s", err)
+	}
+	return filepath.Dir(root)
 }

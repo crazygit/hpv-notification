@@ -3,4 +3,4 @@ database:
   dsn: "app.sqlite3"
   echoSQL: false
 slack:
-  WebhookURL:
+  webhookURL:
