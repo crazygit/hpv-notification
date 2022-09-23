@@ -137,7 +137,7 @@ func fetchData(cityCode string) ([]Place, error) {
 
 func isPlaceExist(p Place, ctx context.Context) (bool, error) {
 	place := query.Use(dal.GetInstance()).Place
-	v, err := place.WithContext(ctx).Where(place.ID.Eq(p.ID), place.CityCode.Eq(p.CityCode)).First()
+	v, err := place.WithContext(ctx).Where(place.ID.Eq(p.ID), place.CityCode.Eq(p.CityCode), place.YYTime.Eq(p.YYTime)).First()
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			return false, nil
